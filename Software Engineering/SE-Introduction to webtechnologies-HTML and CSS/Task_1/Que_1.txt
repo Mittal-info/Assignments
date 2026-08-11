@@ -1,0 +1,6 @@
+1.Instagram Image Container
+
+ Tag Name: div
+ CSS Class: _aagv
+
+The image container uses the <div> tag with the CSS class _aagv.
