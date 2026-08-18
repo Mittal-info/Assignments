@@ -1,0 +1,37 @@
+MySql::
+       MySql is a popular Relational database management system.
+
+       It is commonly used for websites and web applications.
+
+       It works well with technologies such as PHP,Python and Java.
+
+       It is widely used because it is easy to learn and open source.
+
+PostSql::
+         PostSql is an advanced open-source relational database system.
+
+         It is known for strong SQL support and reliability.
+
+         It is commonly used in web applications,analytics and complex systems.
+
+         It is suitable for applications that need advanced database features.
+
+Oracle::
+        Oracle database is a powerful commercial relational database system.
+
+        It is widely used in large organizations and enterprise applications.
+
+        It provides advanced security,scalibility and database management features.
+
+        It is commonly used in banking,finance and large business systems.
+
+SQLLite::
+         SQLLite is a lightweight database that does not require a separate database ERROR.
+
+         It stores the complete database in a single file.
+
+         It is commonly used in mobail apps,desktop applications and small projects.
+
+         It is simple and easy to set up.
+         
+
