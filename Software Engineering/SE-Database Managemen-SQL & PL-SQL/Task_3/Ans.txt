@@ -1,0 +1,37 @@
+Que:1)
+mysql> create table restaurant
+    ->      (id int primary key auto_increment,
+    ->      name varchar(20),
+    ->      cuisine varchar(20),
+    ->       rating decimal(2,1),
+    ->      city varchar(20));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into restaurant
+    ->     (name,cuisine,rating,city)
+    ->       values
+    ->      ('PK','Pizza',4.2,'ahemdabad'),
+    ->      ('Neno','Edali',5.2,'baroda'),
+    ->      ('home','Roti',8.3,'Mumbai'),
+    ->      ('DD','nuddles',1.0,'Idar'),
+    ->       ('MK','meggie',5.2,'Hmt');
+Query OK, 5 rows affected (0.01 sec)
+---------------------------------------------------------
+Que:2)
+
+mysql> update restaurant
+    ->      set name="Spice Villa",rating = 4.0
+    ->      where id=1;
+Query OK, 1 row affected (0.00 sec)
+---------------------------------------------------------
+Que:3)
+
+mysql> delete from restaurant
+    ->  where rating<3.5;
+Query OK, 1 row affected (0.01 sec)
+---------------------------------------------------------
+Que:4)
+
+mysql> select * from restaurant
+    -> where city = "ahemdabad" and rating>4.0
+    -> limit 2;
