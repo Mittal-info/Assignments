@@ -1,0 +1,87 @@
+Que:1)
+
+mysql>  create table influencers
+    ->  (influencer_id int primary key auto_increment,
+    -> name varchar(20)
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table posts
+    -> (
+    -> post_id  int primary key auto_increment,
+    -> caption varchar(30),
+    -> influencer_id int,
+    -> foreign key(influencer_id) references  influencers(influencer_id)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO influencers (influencer_id, name)
+    -> VALUES
+    -> (1, 'Raj Patel'),
+    -> (2, 'Priya Sharma'),
+    -> (3, 'Aarav Shah');
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO posts (influencer_id, caption)
+    -> VALUES
+    -> (1, 'My morning routine'),
+    -> (1, 'Travel vlog'),
+    -> (2, 'Skincare tips'),
+    -> (2, 'Healthy breakfast'),
+    -> (3, 'Fashion trends'),
+    -> (3, 'Weekend photography');
+Query OK, 6 rows affected (0.02 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+-----------------------------------------------------------
+Que:2)
+
+mysql> SELECT p.caption, i.name
+    -> FROM posts p
+    -> INNER JOIN influencers i
+    -> ON p.influencer_id = i.influencer_id;
++---------------------+--------------+
+| caption             | name         |
++---------------------+--------------+
+| My morning routine  | Raj Patel    |
+| Travel vlog         | Raj Patel    |
+| Skincare tips       | Priya Sharma |
+| Healthy breakfast   | Priya Sharma |
+| Fashion trends      | Aarav Shah   |
+| Weekend photography | Aarav Shah   |
++---------------------+--------------+
+6 rows in set (0.00 sec)
+-----------------------------------------------
+Que:3)
+
+mysql> SELECT i.name, COALESCE(p.caption, 'No Posts') AS caption
+    -> FROM influencers i
+    -> LEFT JOIN posts p
+    -> ON i.influencer_id = p.influencer_id;
++--------------+---------------------+
+| name         | caption             |
++--------------+---------------------+
+| Raj Patel    | My morning routine  |
+| Raj Patel    | Travel vlog         |
+| Priya Sharma | Skincare tips       |
+| Priya Sharma | Healthy breakfast   |
+| Aarav Shah   | Fashion trends      |
+| Aarav Shah   | Weekend photography |
++--------------+---------------------+
+-------------------------------------------
+Que:4)
+
+mysql> SELECT p.caption, i.name
+    -> FROM influencers i
+    -> RIGHT JOIN posts p
+    -> ON i.influencer_id = p.influencer_id;
++---------------------+--------------+
+| caption             | name         |
++---------------------+--------------+
+| My morning routine  | Raj Patel    |
+| Travel vlog         | Raj Patel    |
+| Skincare tips       | Priya Sharma |
+| Healthy breakfast   | Priya Sharma |
+| Fashion trends      | Aarav Shah   |
+| Weekend photography | Aarav Shah   |
++---------------------+--------------+
