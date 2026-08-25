@@ -1,0 +1,191 @@
+Que:1)
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Song {
+private:
+    string title;
+    string artist;
+
+public:
+    // Setter for title
+    void setTitle(string newTitle) {
+        title = newTitle;
+    }
+
+    // Getter for title
+    string getTitle() {
+        return title;
+    }
+
+    // Setter for artist
+    void setArtist(string newArtist) {
+        artist = newArtist;
+    }
+
+    // Getter for artist
+    string getArtist() {
+        return artist;
+    }
+};
+
+int main() {
+    Song song;
+
+    song.setTitle("Shape of You");
+    song.setArtist("Ed Sheeran");
+
+    cout << "Original Title: " << song.getTitle() << endl;
+    cout << "Artist: " << song.getArtist() << endl;
+
+    // Update title
+    song.setTitle("Perfect");
+
+    cout << "Updated Title: " << song.getTitle() << endl;
+
+    return 0;
+}
+---------------------------------------------------------
+
+Que:2)
+
+#include <iostream>
+using namespace std;
+
+class InstaStory {
+protected:
+    int storyViews;
+
+public:
+    InstaStory(int views) {
+        storyViews = views;
+    }
+};
+
+class SponsoredStory : public InstaStory {
+public:
+    SponsoredStory(int views)
+        : InstaStory(views) {
+    }
+
+    void displayViews() {
+        cout << "Story Views: " << storyViews << endl;
+    }
+};
+
+int main() {
+    SponsoredStory story(25000);
+
+    story.displayViews();
+
+    return 0;
+}
+----------------------------------------------------------
+Que:3)
+
+#include <iostream>
+using namespace std;
+
+// Abstract class
+class Product {
+public:
+    virtual void upload() = 0;
+};
+
+// Electronics class
+class Electronics : public Product {
+public:
+    void upload() override {
+        cout << "Electronics product uploaded to Flipkart." << endl;
+    }
+};
+
+// Clothing class
+class Clothing : public Product {
+public:
+    void upload() override {
+        cout << "Clothing product uploaded to Flipkart." << endl;
+    }
+};
+
+int main() {
+    Electronics mobile;
+    Clothing shirt;
+
+    mobile.upload();
+    shirt.upload();
+
+    return 0;
+}
+------------------------------------------------------
+
+Que:4)
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class UserProfile {
+private:
+    string phoneNumber;
+
+public:
+    // Setter
+    void setPhoneNumber(string number) {
+        phoneNumber = number;
+    }
+
+    // Getter
+    string getPhoneNumber() {
+        return phoneNumber;
+    }
+};
+
+int main() {
+    UserProfile user;
+
+    // Set phone number
+    user.setPhoneNumber("9876543210");
+
+    // Get phone number
+    cout << "Phone Number: "
+         << user.getPhoneNumber() << endl;
+
+    return 0;
+}
+------------------------------------------------------
+
+Que:5)
+
+Encapsulation means keeping data private and 
+allowing access to it only through controlled methods.
+
+For example, in an Instagram-like app,
+ a user's phone number can be kept private:
+
+class UserProfile {
+private:
+    string phoneNumber;
+
+public:
+    void setPhoneNumber(string number) {
+        phoneNumber = number;
+    }
+
+    string getPhoneNumber() {
+        return phoneNumber;
+    }
+};
+
+
+Abstraction means hiding the complex internal implementation
+and showing only the necessary functionality to the user.
+
+For example, when we upload a photo on Instagram,
+we simply click the Post button.
+We do not need to know how Instagram compresses the photo, 
+uploads it to the server, stores it in a database,
+or displays it to followers. 
+Those internal details are hidden from us.

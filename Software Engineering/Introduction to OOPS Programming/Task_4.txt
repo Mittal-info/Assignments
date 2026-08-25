@@ -1,0 +1,176 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// 1. Base Class
+class SocialMediaUser {
+protected:
+    string username;
+    int followers;
+
+public:
+    SocialMediaUser(string user, int count) {
+        username = user;
+        followers = count;
+    }
+
+    void displayProfile() {
+        cout << "Username: " << username << endl;
+        cout << "Followers: " << followers << endl;
+    }
+};
+
+
+// 2. YouTuber inherits from SocialMediaUser
+class YouTuber : public SocialMediaUser {
+protected:
+    string channelName;
+
+public:
+    YouTuber(string user, int count, string channel)
+        : SocialMediaUser(user, count) {
+        channelName = channel;
+    }
+
+    void uploadVideo(string title) {
+        cout << "Video " << title
+             << " uploaded to " << channelName << endl;
+    }
+};
+
+
+// 3. Podcaster inherits from SocialMediaUser
+class Podcaster : public SocialMediaUser {
+private:
+    string podcastName;
+
+public:
+    Podcaster(string user, int count, string podcast)
+        : SocialMediaUser(user, count) {
+        podcastName = podcast;
+    }
+
+    void publishEpisode(string episodeTitle) {
+        cout << "Episode " << episodeTitle
+             << " published on " << podcastName << endl;
+    }
+};
+
+
+// 4. GamingYouTuber inherits from YouTuber
+// This is multilevel inheritance:
+// SocialMediaUser -> YouTuber -> GamingYouTuber
+class GamingYouTuber : public YouTuber {
+public:
+    GamingYouTuber(string user, int count, string channel)
+        : YouTuber(user, count, channel) {
+    }
+
+    void streamGame(string gameName) {
+        cout << username << " is now streaming "
+             << gameName << " on " << channelName << endl;
+    }
+};
+
+
+// 5. InstagramInfluencer inherits from SocialMediaUser
+// This demonstrates hierarchical inheritance.
+class InstagramInfluencer : public SocialMediaUser {
+public:
+    InstagramInfluencer(string user, int count)
+        : SocialMediaUser(user, count) {
+    }
+
+    void postStory(string storyTitle) {
+        cout << username
+             << " posted a new story: "
+             << storyTitle << endl;
+    }
+};
+
+
+// Main function
+int main() {
+
+    // YouTuber object
+    cout << "--- YouTuber ---" << endl;
+
+    YouTuber youtuber("TechGuru", 50000, "TechGuru Channel");
+
+    youtuber.displayProfile();
+    youtuber.uploadVideo("C++ Inheritance Tutorial");
+
+
+    // Podcaster object
+    cout << "\n--- Podcaster ---" << endl;
+
+    Podcaster podcaster("JohnPod", 15000, "The Coding Podcast");
+
+    podcaster.displayProfile();
+    podcaster.publishEpisode("Learning C++");
+
+
+    // GamingYouTuber object
+    cout << "\n--- Gaming YouTuber ---" << endl;
+
+    GamingYouTuber gamer("GameMaster", 100000, "GameMaster Gaming");
+
+    gamer.displayProfile();
+    gamer.uploadVideo("Best Gaming Moments");
+    gamer.streamGame("Minecraft");
+
+
+    // InstagramInfluencer object
+    cout << "\n--- Instagram Influencer ---" << endl;
+
+    InstagramInfluencer influencer("FashionQueen", 75000);
+
+    influencer.displayProfile();
+    influencer.postStory("My New Outfit");
+
+    return 0;
+}
+=====================================================
+OUTPUT::
+--- YouTuber ---
+Username: TechGuru
+Followers: 50000
+Video C++ Inheritance Tutorial uploaded to TechGuru Channel
+
+--- Podcaster ---
+Username: JohnPod
+Followers: 15000
+Episode Learning C++ published on The Coding Podcast
+
+--- Gaming YouTuber ---
+Username: GameMaster
+Followers: 100000
+Video Best Gaming Moments uploaded to GameMaster Gaming
+GameMaster is now streaming Minecraft on GameMaster Gaming
+
+--- Instagram Influencer ---
+Username: FashionQueen
+Followers: 75000
+FashionQueen posted a new story: My New Outfit
+==========================================================
+1. Base / Parent class
+
+SocialMediaUser
+├── username
+├── followers
+└── displayProfile()
+
+2. Hierarchical inheritance
+
+             SocialMediaUser
+              /     |      \
+             /      |       \
+       YouTuber  Podcaster  InstagramInfluencer
+
+3. Multilevel inheritance
+
+SocialMediaUser
+       ↓
+    YouTuber
+       ↓
+GamingYouTuber
