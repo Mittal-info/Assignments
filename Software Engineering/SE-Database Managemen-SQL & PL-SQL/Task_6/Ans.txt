@@ -1,0 +1,70 @@
+Que:1)
+
+mysql> SELECT user_id, COUNT(*) AS order_count
+    -> FROM orders
+    -> GROUP BY user_id;
++---------+-------------+
+| user_id | order_count |
++---------+-------------+
+|       1 |           3 |
+|       2 |           2 |
+|       3 |           1 |
++---------+-------------+
+3 rows in set (0.01 sec)
+-----------------------------------------------------------
+Que:2)
+
+
+mysql> select name,count(rating)
+    -> from  restaurant
+    -> group by name
+    -> having avg(rating)>4.0;
++------+---------------+
+| name | count(rating) |
++------+---------------+
+| Neno |             1 |
+| home |             1 |
+| MK   |             1 |
++------+---------------+
+----------------------------------------------------------------
+Que:3)
+mysql> SELECT DISTINCT user_id
+    -> FROM payments
+    -> WHERE user_id IN (
+    ->     SELECT user_id
+    ->     FROM payments
+    ->     WHERE amount > 2000
+    -> );
++---------+
+| user_id |
++---------+
+|       1 |
+|       3 |
++---------+
+-------------------------------------------------------------------
+Que:4)
+mysql> SELECT * FROM movies;
++----------+---------------------+--------+
+| movie_id | movie_name          | rating |
++----------+---------------------+--------+
+|        1 | Dangal              |    8.5 |
+|        2 | 3 Idiots            |    9.0 |
+|        3 | Jab We Met          |    7.5 |
+|        4 | Student of the Year |    5.0 |
+|        5 | Pathaan             |    6.5 |
++----------+---------------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT movie_name
+    -> FROM movies
+    -> WHERE rating > (
+    ->     SELECT AVG(rating)
+    ->     FROM movies
+    -> );
++------------+
+| movie_name |
++------------+
+| Dangal     |
+| 3 Idiots   |
+| Jab We Met |
++------------+
