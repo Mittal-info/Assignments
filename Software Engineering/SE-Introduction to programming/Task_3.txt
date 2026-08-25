@@ -1,0 +1,56 @@
+Que:1)
+
+#include <stdio.h>
+
+int main() {
+    // Flipkart product variables
+    char productName[] = "boAt Headphones";
+    float price = 1499.50f;
+    double rating = 4.5;
+
+    // Print values and their data types
+    printf("Product Name: %s | Data Type: string (char array)\n", productName);
+    printf("Price: %.2f | Data Type: float\n", price);
+    printf("Rating: %.1f | Data Type: double\n", rating);
+
+    return 0;
+}
+----------------------------------------------------------
+Que:2)
+
+#include <stdio.h>
+
+int main() {
+    const float GST_RATE = 0.18;  // 18% GST
+
+    float basePrice = 500.0;
+    float gst = basePrice * GST_RATE;
+    float finalPrice = basePrice + gst;
+
+    printf("Final Price = %.2f", finalPrice);
+
+    return 0;
+}
+---------------------------------------------------------
+
+Que:3)
+
+#include <stdio.h>
+
+int main() {
+    char playlistName[] = "My Favorites";
+    int totalSongs = 25;
+    float avgDuration = 3.5;
+
+    printf("My favorite Spotify playlist is \"%s\", it has %d songs, and the average song duration is %.1f minutes.\n",
+           playlistName, totalSongs, avgDuration);
+
+    return 0;
+}
+---------------------------------------------------------
+
+Que:4)
+
+player_age
+
+userName

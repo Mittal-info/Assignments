@@ -1,0 +1,77 @@
+Que:1)
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char songTitle[] = "Tum Hi Ho";
+
+    printf("Length: %lu", strlen(songTitle));
+
+    return 0;
+}
+------------------------------------------------
+
+Que:2)
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char username1[50];
+    char username2[50];
+
+    printf("Enter first username: ");
+    scanf("%s", username1);
+
+    printf("Enter second username: ");
+    scanf("%s", username2);
+
+    if (strcmp(username1, username2) == 0)
+        printf("Usernames are same");
+    else
+        printf("Usernames are different");
+
+    return 0;
+}
+---------------------------------------------------
+
+Que:3)
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char shoppingApp[20];
+
+    strcpy(shoppingApp, "Flipkart");
+
+    printf("Shopping App: %s", shoppingApp);
+
+    return 0;
+}
+--------------------------------------------------
+
+Que:4)
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char name[50];
+    char username[6];
+
+    printf("Enter your full name: ");
+    scanf(" %[^\n]", name);
+
+    if (strlen(name) < 5) {
+        strcpy(username, name);
+    } else {
+        strncpy(username, name, 5);
+        username[5] = '\0';
+    }
+
+    printf("Username: %s", username);
+
+    return 0;
+}

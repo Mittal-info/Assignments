@@ -1,0 +1,111 @@
+Que:1)
+
+function calculateTotal(itemPrice, quantity) {
+    return itemPrice * quantity;
+}
+
+// Example
+let total = calculateTotal(100, 3);
+console.log(total); // 300
+
+-----------------------------------------------------
+
+Que:2)
+
+#include <stdio.h>
+
+int main() {
+    float price, discount, finalPrice;
+    int isMember;
+
+    printf("Enter product price: ");
+    scanf("%f", &price);
+
+    printf("Enter discount percentage: ");
+    scanf("%f", &discount);
+
+    printf("Are you a member? (1 = Yes, 0 = No): ");
+    scanf("%d", &isMember);
+
+    // Apply normal discount
+    finalPrice = price - (price * discount / 100);
+
+    // Apply extra 5% discount for members
+    if (isMember == 1) {
+        finalPrice = finalPrice - (finalPrice * 5 / 100);
+    }
+
+    printf("Final Price = %.2f\n", finalPrice);
+
+    return 0;
+}
+------------------------------------------------------
+Que:3)
+
+#include <stdio.h>
+#include <stdbool.h>
+
+bool isEligibleForOffer(int age, float orderValue) {
+    return (age >= 18 && orderValue > 500);
+}
+
+int main() {
+    int age;
+    float orderValue;
+
+    printf("Enter age: ");
+    scanf("%d", &age);
+
+    printf("Enter order value: ");
+    scanf("%f", &orderValue);
+
+    if (isEligibleForOffer(age, orderValue)) {
+        printf("Eligible for offer\n");
+    } else {
+        printf("Not eligible for offer\n");
+    }
+
+    return 0;
+}
+------------------------------------------------------
+Que:4)
+
+#include <stdio.h>
+
+int main() {
+    int likes, comments, shares;
+
+    printf("Enter likes: ");
+    scanf("%d", &likes);
+
+    printf("Enter comments: ");
+    scanf("%d", &comments);
+
+    printf("Enter shares: ");
+    scanf("%d", &shares);
+
+    if (likes >= 1000 || (comments > 200 && shares >= 50))
+        printf("Trending");
+    else
+        printf("Not Trending");
+
+    return 0;
+}
+-----------------------------------------------------
+Que:5)
+
+#include <stdio.h>
+
+int main() {
+    int followerCount = 100;
+
+    printf("Before: %d\n", followerCount);
+
+    printf("Pre-increment: %d\n", ++followerCount);
+    printf("After pre-increment: %d\n", followerCount);
+
+    printf("Post-increment: %d\n", followerCount++);
+    printf("After post-increment: %d\n", followerCount);
+
+    return 0;
+}

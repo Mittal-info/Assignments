@@ -1,0 +1,40 @@
+Que:1)
+
+A program is a set of instructions written for a computer 
+or mobile device to follow so it can perform a specific task.
+For example, in **Paytm**,
+a program processes a payment when I scan a QR code,
+checks the details, and transfers the money to 
+the correct person or shop. In simple words,
+a program tells a device **what to do and how to do it**.
+--------------------------------------------------------------
+Que:2)
+
+Three Popular Programming Languages
+
+Java: Java is usually a compiled language. 
+Its source code is compiled into bytecode,
+which is then executed by the Java Virtual Machine (JVM).
+
+Python: Python is usually considered an interpreted language.
+The Python interpreter executes 
+the program’s instructions at runtime.
+
+JavaScript: JavaScript can be considered both 
+compiled and interpreted. Modern JavaScript 
+engines use techniques such as Just-In-Time (JIT)
+compilation to execute code efficiently.
+----------------------------------------------------------
+Que:3)
+
+Algorithm: Ordering Food on Swiggy
+Open the Swiggy app on your mobile phone.
+Log in to your account and enter your delivery address.
+Search for a restaurant or choose one from the available options.
+Select the food items you want to order.
+Add the selected items to the cart.
+Open the cart and check the items, quantity, and total amount.
+Click on Proceed to Checkout.
+Confirm your delivery address and select a payment method.
+Click on Pay Now and complete the payment.
+After successful payment, the order is confirmed and placed.
