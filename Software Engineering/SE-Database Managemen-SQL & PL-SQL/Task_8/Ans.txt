@@ -1,0 +1,87 @@
+Que:1)
+
+Declare variables and print values
+DECLARE
+    v_name VARCHAR2(50) := 'John';
+    v_age  NUMBER := 25;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Name: ' || v_name);
+    DBMS_OUTPUT.PUT_LINE('Age: ' || v_age);
+END;
+/
+---------------------------------------------------------
+
+Que:2)
+
+Check order amount using IF
+DECLARE
+    v_order_amount NUMBER := 750;
+BEGIN
+    IF v_order_amount > 500 THEN
+        DBMS_OUTPUT.PUT_LINE('Eligible for free delivery');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Delivery charges apply');
+    END IF;
+END;
+/
+------------------------------------------------------
+Que:3)
+
+ Print numbers 1 to 5 using LOOP
+DECLARE
+    v_counter NUMBER := 1;
+BEGIN
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(v_counter);
+
+        v_counter := v_counter + 1;
+
+        EXIT WHEN v_counter > 5;
+    END LOOP;
+END;
+/
+
+---------------------------------------------------------
+Que:4)
+
+Cursor to print product names
+DECLARE
+    CURSOR product_cursor IS
+        SELECT product_name
+        FROM products;
+
+    v_product_name products.product_name%TYPE;
+BEGIN
+    OPEN product_cursor;
+
+    LOOP
+        FETCH product_cursor INTO v_product_name;
+
+        EXIT WHEN product_cursor%NOTFOUND;
+
+        DBMS_OUTPUT.PUT_LINE('Product: ' || v_product_name);
+    END LOOP;
+
+    CLOSE product_cursor;
+END;
+/
+
+---------------------------------------------------------
+Que:5)
+
+ Handle division by zero exception
+DECLARE
+    v_num1   NUMBER := 100;
+    v_num2   NUMBER := 0;
+    v_result NUMBER;
+BEGIN
+    v_result := v_num1 / v_num2;
+
+    DBMS_OUTPUT.PUT_LINE('Result: ' || v_result);
+
+EXCEPTION
+    WHEN ZERO_DIVIDE THEN
+        DBMS_OUTPUT.PUT_LINE('Cannot divide by zero');
+END;
+/
+
