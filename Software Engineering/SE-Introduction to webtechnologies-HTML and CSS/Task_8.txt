@@ -1,0 +1,307 @@
+Que:1)
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Mobile screen ke according page ko scale karta hai -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Responsive Product Card</title>
+
+    <style>
+        .product-card {
+            display: flex;
+            width: 700px;
+            margin: 30px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            gap: 30px;
+            font-family: Arial, sans-serif;
+        }
+
+        .product-card img {
+            width: 250px;
+            height: 250px;
+            object-fit: contain;
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .product-details h2 {
+            font-size: 28px;
+        }
+
+        .price {
+            color: green;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #2874f0;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="product-card">
+
+        <img src="https://via.placeholder.com/250"
+             alt="Smartphone">
+
+        <div class="product-details">
+            <h2>Samsung Galaxy Smartphone</h2>
+
+            <p>6.5 inch Display | 128 GB Storage</p>
+
+            <p class="price">₹20,999</p>
+
+            <p>⭐ 4.5 | Free Delivery</p>
+
+            <button>Buy Now</button>
+        </div>
+
+    </div>
+
+</body>
+</html>
+----------------------------------------------------
+
+Que:2)
+
+@media only screen and (max-width: 600px) {
+
+    .product-card {
+        flex-direction: column;
+        width: auto;
+        margin: 15px;
+    }
+
+    .product-card img {
+        width: 100%;
+    }
+}
+----------------------------------------------------
+
+Que:3)
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Responsive Product Card</title>
+
+    <style>
+
+        /* Default: Large Desktop */
+        .product-card {
+            display: flex;
+            width: 700px;
+            margin: 30px auto;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            gap: 30px;
+            font-family: Arial, sans-serif;
+        }
+
+        .product-card img {
+            width: 250px;
+            height: 250px;
+            object-fit: contain;
+        }
+
+        .product-details {
+            flex: 1;
+        }
+
+        .product-details h2 {
+            font-size: 28px;
+        }
+
+        .product-details p {
+            font-size: 18px;
+        }
+
+        .price {
+            color: green;
+            font-size: 24px !important;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #2874f0;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+        }
+
+
+        /* Breakpoint 1200px */
+        @media only screen and (max-width: 1200px) {
+
+            .product-card {
+                padding: 25px;
+            }
+
+            .product-details h2 {
+                font-size: 26px;
+            }
+        }
+
+
+        /* Breakpoint 900px */
+        @media only screen and (max-width: 900px) {
+
+            .product-card {
+                width: auto;
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .product-details h2 {
+                font-size: 23px;
+            }
+
+            .product-details p {
+                font-size: 16px;
+            }
+        }
+
+
+        /* Breakpoint 600px */
+        @media only screen and (max-width: 600px) {
+
+            .product-card {
+                flex-direction: column;
+                margin: 10px;
+                padding: 15px;
+            }
+
+            .product-card img {
+                width: 100%;
+                height: 200px;
+            }
+
+            .product-details h2 {
+                font-size: 20px;
+            }
+
+            .product-details p {
+                font-size: 14px;
+            }
+
+            .price {
+                font-size: 20px !important;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="product-card">
+
+        <img src="https://via.placeholder.com/250"
+             alt="Samsung Smartphone">
+
+        <div class="product-details">
+
+            <h2>Samsung Galaxy Smartphone</h2>
+
+            <p>6.5 inch Display | 128 GB Storage</p>
+
+            <p class="price">₹20,999</p>
+
+            <p>⭐ 4.5 | Free Delivery</p>
+
+            <button>Buy Now</button>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
+----------------------------------------------------
+
+Que:4)
+
+Step 1: File save karo
+File ka naam:
+
+index.html
+
+Step 2: Browser me open karo
+HTML file ko Chrome/Edge me open karo.
+
+Step 3: Developer Tools kholo
+Keyboard:
+
+F12
+
+ya:
+
+Ctrl + Shift + I
+
+Phir Device Toolbar enable karo:
+
+Ctrl + Shift + M
+
+Step 4: Different widths par test karo
+📱 Mobile — 375px
+Card vertical ho jayega:
+
+IMAGE
+  ↓
+PRODUCT DETAILS
+  ↓
+PRICE
+  ↓
+BUY NOW
+
+Screenshot note:
+
+At 375px, the product card changes to a vertical layout. The image appears on top and the product details appear below it.
+
+📱 Tablet — 768px
+Card horizontal rahega, lekin padding aur font size smaller ho jayega.
+
+Screenshot note:
+
+At 768px, the card remains horizontal, but its width, padding, and font sizes are reduced for better readability.
+
+🖥️ Desktop — 1200px+
+Card spacious horizontal layout me rahega.
+
+Screenshot note:
+
+At desktop width, the product image and details appear side by side with larger spacing, padding, and font sizes.
+
+Submission ke liye
+Tum 3 screenshots attach kar sakte ho:
+
+1. mobile.png   → 375px
+2. tablet.png   → 768px
+3. desktop.png  → 1200px
+
+

@@ -1,0 +1,180 @@
+Que:1)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Simple Blog</title>
+</head>
+<body>
+
+    <header>
+        <h1>My Simple Blog</h1>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Explore</a>
+        <a href="#">About</a>
+    </nav>
+
+    <article>
+        <h2>My First Blog Post</h2>
+        <p>
+            Welcome to my blog! This is my first blog post.
+            I am learning HTML and semantic tags.
+        </p>
+        <p>
+            Semantic HTML makes the structure of a webpage
+            easier to understand.
+        </p>
+    </article>
+
+    <footer>
+        <p>&copy; 2026 My Simple Blog. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+-------------------------------------------------------
+Que:2)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Listing</title>
+</head>
+<body>
+
+    <article>
+        <header>
+            <h2>Pizza Paradise</h2>
+        </header>
+
+        <p>Italian, Pizza, Fast Food</p>
+        <p>₹300 for two</p>
+
+        <footer>
+            <span>⭐ 4.5</span>
+            <span> • 30 mins</span>
+        </footer>
+    </article>
+
+    <br>
+
+    <article>
+        <header>
+            <h2>Spice Garden</h2>
+        </header>
+
+        <p>North Indian, Chinese, Biryani</p>
+        <p>₹400 for two</p>
+
+        <footer>
+            <span>⭐ 4.2</span>
+            <span> • 35 mins</span>
+        </footer>
+    </article>
+
+</body>
+</html>
+---------------------------------------------------
+Que:3)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+</head>
+<body>
+
+    <nav>
+        <a href="#">Home</a> &gt;
+        <a href="#">Electronics</a> &gt;
+        <a href="#">Mobiles</a> &gt;
+        <span>Smartphone</span>
+    </nav>
+
+    <header>
+        <h1>Samsung Galaxy Smartphone</h1>
+        <img src="phone.jpg" alt="Samsung Galaxy Smartphone">
+    </header>
+
+    <article>
+        <h2>Product Details</h2>
+
+        <p>
+            Samsung Galaxy smartphone with a powerful processor,
+            high-quality camera and long-lasting battery.
+        </p>
+
+        <h3>Features</h3>
+        <ul>
+            <li>6.5 inch Display</li>
+            <li>128 GB Storage</li>
+            <li>50 MP Camera</li>
+            <li>5000 mAh Battery</li>
+        </ul>
+
+        <p><strong>Price: ₹20,999</strong></p>
+    </article>
+
+    <footer>
+        <p>🎁 Special Offer: 10% instant discount</p>
+        <p>🛡️ 1 Year Manufacturer Warranty</p>
+    </footer>
+
+</body>
+</html>
+--------------------------------------------------
+Que:4)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Idiots Movie Review</title>
+</head>
+<body>
+
+    <header>
+        <h1>Movie Reviews</h1>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Movies</a>
+        <a href="#">Reviews</a>
+    </nav>
+
+    <article>
+        <header>
+            <h2>3 Idiots Movie Review</h2>
+        </header>
+
+        <p>
+            3 Idiots is an entertaining and inspirational movie
+            about friendship and education.
+        </p>
+
+        <p>
+            <strong>Rating: 4.5/5</strong>
+        </p>
+
+        <footer>
+            <p>Reviewed by Rahul</p>
+        </footer>
+    </article>
+
+    <footer>
+        <p>&copy; 2026 Movie Reviews</p>
+    </footer>
+
+</body>
+</html>
