@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gamer Tag & Music Links</title>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= Q2: GAMER TAG ================= -->
+
+    <section class="gamer-section">
+
+        <div class="gamer-card">
+
+            <!-- Avatar -->
+            <img src="https://via.placeholder.com/150"
+                 alt="Gamer Avatar"
+                 class="avatar">
+
+            <!-- Gamer Name -->
+            <h1>Shadow Gamer</h1>
+
+            <p class="gamer-alias">@ShadowGamer</p>
+
+            <p>
+                🎮 Gamer | Streamer | Music Lover
+            </p>
+
+            <!-- Gaming Profile Buttons -->
+
+            <div class="gaming-links">
+
+                <a href="https://www.twitch.tv/"
+                   target="_blank"
+                   class="gaming-btn twitch">
+                    <i class="bi bi-twitch"></i>
+                    Twitch
+                </a>
+
+                <a href="https://discord.com/"
+                   target="_blank"
+                   class="gaming-btn discord">
+                    <i class="bi bi-discord"></i>
+                    Discord
+                </a>
+
+                <a href="https://store.steampowered.com/"
+                   target="_blank"
+                   class="gaming-btn steam">
+                    <i class="bi bi-steam"></i>
+                    Steam
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= Q1 & Q3: MUSIC LINKS FORM ================= -->
+
+    <section class="music-section">
+
+        <h2>My Music Links</h2>
+
+        <p>
+            Add your Spotify, YouTube Music and Apple Music profiles.
+        </p>
+
+
+        <!-- Q1: Form named musicLinksForm -->
+
+        <form id="musicLinksForm">
+
+            <!-- Spotify -->
+
+            <div class="input-box">
+
+                <i class="bi bi-spotify"></i>
+
+                <input type="url"
+                       id="spotify"
+                       placeholder="Enter Spotify Profile URL"
+                       required>
+
+            </div>
+
+
+            <!-- YouTube Music -->
+
+            <div class="input-box">
+
+                <i class="bi bi-youtube"></i>
+
+                <input type="url"
+                       id="youtube"
+                       placeholder="Enter YouTube Music URL"
+                       required>
+
+            </div>
+
+
+            <!-- Apple Music -->
+
+            <div class="input-box">
+
+                <i class="bi bi-apple"></i>
+
+                <input type="url"
+                       id="apple"
+                       placeholder="Enter Apple Music Profile URL"
+                       required>
+
+            </div>
+
+
+            <button type="submit" class="submit-btn">
+                Add Links
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- ================= Q1 & Q4: PREVIEW CARDS ================= -->
+
+    <section class="preview-section">
+
+        <h2>Music Link Preview</h2>
+
+        <div id="previewCards">
+
+            <!-- Preview cards JavaScript se add honge -->
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        // Form select karna
+        const form = document.getElementById("musicLinksForm");
+
+        const previewCards =
+            document.getElementById("previewCards");
+
+
+        // Form submit hone par
+        form.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+
+            // URLs lena
+            const spotifyURL =
+                document.getElementById("spotify").value;
+
+            const youtubeURL =
+                document.getElementById("youtube").value;
+
+            const appleURL =
+                document.getElementById("apple").value;
+
+
+            // Old preview cards remove karna
+            previewCards.innerHTML = "";
+
+
+            // Spotify card
+            createPreviewCard(
+                "Spotify",
+                spotifyURL,
+                "bi-spotify",
+                "spotify-card"
+            );
+
+
+            // YouTube card
+            createPreviewCard(
+                "YouTube Music",
+                youtubeURL,
+                "bi-youtube",
+                "youtube-card"
+            );
+
+
+            // Apple Music card
+            createPreviewCard(
+                "Apple Music",
+                appleURL,
+                "bi-apple",
+                "apple-card"
+            );
+
+
+            // Form clear karna
+            form.reset();
+
+        });
+
+
+        // Preview card create karne ka function
+
+        function createPreviewCard(
+            platform,
+            url,
+            icon,
+            cardClass
+        ) {
+
+            // URL se username/handle extract karna
+            const username = extractUsername(url);
+
+
+            // New div create karna
+            const card = document.createElement("div");
+
+            card.className =
+                "preview-card " + cardClass;
+
+
+            // Card ka HTML
+            card.innerHTML = `
+
+                <div class="platform-logo">
+                    <i class="bi ${icon}"></i>
+                </div>
+
+                <div class="card-info">
+
+                    <h3>${platform}</h3>
+
+                    <p>@${username}</p>
+
+                </div>
+
+                <a href="${url}"
+                   target="_blank"
+                   class="visit-btn">
+                    Visit
+                </a>
+
+            `;
+
+
+            // Card ko page par add karna
+            previewCards.appendChild(card);
+        }
+
+
+        // URL se username/handle nikalna
+
+        function extractUsername(url) {
+
+            try {
+
+                const link = new URL(url);
+
+                let path = link.pathname;
+
+                // Starting aur ending slash remove karna
+                path = path.replace(/^\/+|\/+$/g, "");
+
+
+                if (path === "") {
+                    return "Music Profile";
+                }
+
+
+                // URL ko parts mein divide karna
+                const parts = path.split("/");
+
+
+                // Last part username hoga
+                return parts[parts.length - 1];
+
+            }
+
+            catch {
+
+                return "Music Profile";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+---------------------------------------------------------
+/* ================= GENERAL ================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #222;
+}
+
+
+/* ================= Q2: GAMER TAG ================= */
+
+.gamer-section {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px;
+
+    background: linear-gradient(
+        135deg,
+        #6c5ce7,
+        #a29bfe
+    );
+}
+
+
+.gamer-card {
+    width: 600px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    background-color: white;
+
+    border-radius: 20px;
+
+    box-shadow: 0 8px 25px
+                rgba(0, 0, 0, 0.2);
+}
+
+
+.avatar {
+    width: 150px;
+    height: 150px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 5px solid #6c5ce7;
+}
+
+
+.gamer-card h1 {
+    margin-bottom: 5px;
+}
+
+
+.gamer-alias {
+    color: #777;
+}
+
+
+/* ================= GAMING BUTTONS ================= */
+
+.gaming-links {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    margin-top: 25px;
+}
+
+
+.gaming-btn {
+    text-decoration: none;
+
+    color: white;
+
+    padding: 12px 25px;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+}
+
+
+.twitch {
+    background-color: #9146ff;
+}
+
+
+.discord {
+    background-color: #5865f2;
+}
+
+
+.steam {
+    background-color: #171a21;
+}
+
+
+.gaming-btn:hover {
+    opacity: 0.8;
+}
+
+
+/* ================= Q1: MUSIC FORM ================= */
+
+.music-section {
+    max-width: 650px;
+
+    margin: 50px auto;
+
+    padding: 30px;
+
+    background-color: white;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 20px
+                rgba(0, 0, 0, 0.1);
+}
+
+
+.music-section h2 {
+    text-align: center;
+}
+
+
+.music-section > p {
+    text-align: center;
+
+    color: #666;
+}
+
+
+/* ================= Q3: INPUT ICONS ================= */
+
+.input-box {
+    position: relative;
+
+    margin: 20px 0;
+}
+
+
+.input-box i {
+    position: absolute;
+
+    left: 15px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 22px;
+}
+
+
+.input-box input {
+    width: 100%;
+
+    padding: 14px 15px 14px 50px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+}
+
+
+.input-box input:focus {
+    outline: none;
+
+    border-color: #6c5ce7;
+}
+
+
+/* ================= SUBMIT BUTTON ================= */
+
+.submit-btn {
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: #6c5ce7;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.submit-btn:hover {
+    background-color: #5145b5;
+}
+
+
+/* ================= Q4: PREVIEW CARDS ================= */
+
+.preview-section {
+    max-width: 800px;
+
+    margin: 40px auto;
+
+    padding: 20px;
+}
+
+
+.preview-section h2 {
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+
+.preview-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 18px;
+
+    margin-bottom: 15px;
+
+    background-color: white;
+
+    border-radius: 10px;
+
+    box-shadow: 0 3px 12px
+                rgba(0, 0, 0, 0.1);
+}
+
+
+/* Platform Logo */
+
+.platform-logo {
+    font-size: 38px;
+}
+
+
+/* Card Information */
+
+.card-info {
+    flex: 1;
+}
+
+
+.card-info h3 {
+    margin: 0;
+}
+
+
+.card-info p {
+    margin: 5px 0;
+
+    color: #666;
+}
+
+
+/* Visit Button */
+
+.visit-btn {
+    text-decoration: none;
+
+    color: white;
+
+    background-color: #222;
+
+    padding: 9px 20px;
+
+    border-radius: 6px;
+}
+
+
+/* ================= DISTINCT PLATFORM CARDS ================= */
+
+
+/* Spotify */
+
+.spotify-card {
+    border-left: 7px solid #1db954;
+}
+
+
+.spotify-card .platform-logo {
+    color: #1db954;
+}
+
+
+/* YouTube */
+
+.youtube-card {
+    border-left: 7px solid #ff0000;
+}
+
+
+.youtube-card .platform-logo {
+    color: #ff0000;
+}
+
+
+/* Apple Music */
+
+.apple-card {
+    border-left: 7px solid #555;
+}
+
+
+.apple-card .platform-logo {
+    color: #555;
+}
+
+
+/* ================= RESPONSIVE DESIGN ================= */
+
+@media (max-width: 600px) {
+
+    .gamer-section {
+        padding: 20px;
+    }
+
+
+    .gamer-card {
+        width: 100%;
+
+        padding: 25px 15px;
+    }
+
+
+    .gaming-links {
+        flex-direction: column;
+    }
+
+
+    .gaming-btn {
+        width: 100%;
+    }
+
+
+    .music-section {
+        margin: 25px 15px;
+
+        padding: 20px 15px;
+    }
+
+
+    .preview-section {
+        margin: 25px 15px;
+
+        padding: 10px;
+    }
+
+
+    .preview-card {
+        flex-wrap: wrap;
+    }
+
+
+    .visit-btn {
+        width: 100%;
+
+        text-align: center;
+    }
+
+}
