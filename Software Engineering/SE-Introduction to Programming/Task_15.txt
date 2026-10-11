@@ -1,0 +1,129 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int minutes[7] = {0};
+    int choice;
+    char confirm;
+
+    while (1) {
+        printf("\n--- Music Listening Logger ---\n");
+        printf("1. Log listening minutes\n");
+        printf("2. View weekly summary\n");
+        printf("3. Generate weekly report\n");
+        printf("4. Reset weekly data\n");
+        printf("5. Exit\n");
+
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        // 1. Log daily listening minutes
+        if (choice == 1) {
+            FILE *file = fopen("music_log.txt", "w");
+
+            if (file == NULL) {
+                printf("Error opening file!\n");
+                continue;
+            }
+
+            printf("Enter listening minutes for 7 days:\n");
+
+            for (int i = 0; i < 7; i++) {
+                printf("Day %d: ", i + 1);
+                scanf("%d", &minutes[i]);
+
+                fprintf(file, "%d\n", minutes[i]);
+            }
+
+            fclose(file);
+
+            printf("Music data saved successfully!\n");
+        }
+
+        // 2. View weekly summary
+        else if (choice == 2) {
+            FILE *file = fopen("music_log.txt", "r");
+
+            if (file == NULL) {
+                printf("No music data found!\n");
+                continue;
+            }
+
+            printf("\nWeekly Listening Summary:\n");
+
+            for (int i = 0; i < 7; i++) {
+                fscanf(file, "%d", &minutes[i]);
+                printf("Day %d: %d minutes\n", i + 1, minutes[i]);
+            }
+
+            fclose(file);
+        }
+
+        // 3. Generate weekly report
+        else if (choice == 3) {
+            FILE *file = fopen("music_log.txt", "r");
+
+            if (file == NULL) {
+                printf("No music data found!\n");
+                continue;
+            }
+
+            int total = 0;
+            int highest = 0;
+
+            for (int i = 0; i < 7; i++) {
+                fscanf(file, "%d", &minutes[i]);
+
+                total += minutes[i];
+
+                if (minutes[i] > highest) {
+                    highest = minutes[i];
+                }
+            }
+
+            fclose(file);
+
+            printf("\n--- Weekly Report ---\n");
+            printf("Total: %d minutes\n", total);
+            printf("Average: %.2f minutes\n", total / 7.0);
+            printf("Highest: %d minutes\n", highest);
+        }
+
+        // 4. Reset data
+        else if (choice == 4) {
+            printf("Are you sure you want to reset data? (y/n): ");
+            scanf(" %c", &confirm);
+
+            if (confirm == 'y' || confirm == 'Y') {
+
+                // Clear array
+                for (int i = 0; i < 7; i++) {
+                    minutes[i] = 0;
+                }
+
+                // Clear file contents
+                FILE *file = fopen("music_log.txt", "w");
+
+                if (file != NULL) {
+                    fclose(file);
+                }
+
+                printf("Weekly data reset successfully!\n");
+            } else {
+                printf("Reset cancelled.\n");
+            }
+        }
+
+        // 5. Exit
+        else if (choice == 5) {
+            printf("Goodbye!\n");
+            break;
+        }
+
+        else {
+            printf("Invalid choice!\n");
+        }
+    }
+
+    return 0;
+}

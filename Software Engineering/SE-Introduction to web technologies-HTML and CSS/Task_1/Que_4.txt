@@ -1,0 +1,17 @@
+4.DOM Structure of myportfolio
+html
+ ├── head
+ │    └── title
+ │
+ └── body
+      ├── h1 (My Portfolio)
+      ├── p (Introduction)
+      ├── img (Profile Picture)
+      ├── h2 (About Me)
+      ├── p
+      ├── h2 (Technical Skills)
+      ├── p
+      ├── h2 (Projects)
+      ├── p
+      ├── h2 (Contact)
+      └── p

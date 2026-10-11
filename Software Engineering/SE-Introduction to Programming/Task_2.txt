@@ -1,0 +1,25 @@
+Que:1)
+
+#include <stdio.h>
+
+int main() {
+    printf("Hello, Instagram World!");
+    return 0;
+}
+--------------------------------------------------------
+Que:2)
+
+#include <stdio.h>
+
+// Header
+int main() {
+    // Main function
+    printf("Hello, World!");
+
+    // Return statement
+    return 0;
+}
+-------------------------------------------------------
+
+
+

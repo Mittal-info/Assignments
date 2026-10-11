@@ -1,0 +1,194 @@
+Que:1)
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Playlist {
+private:
+    string name;
+
+public:
+    // Default constructor
+    Playlist() {
+        name = "My Favourites";
+        cout << "Welcome to your playlist!" << endl;
+    }
+
+    void display() {
+        cout << "Playlist Name: " << name << endl;
+    }
+};
+
+int main() {
+    Playlist playlist;
+
+    playlist.display();
+
+    return 0;
+}
+------------------------------------------------------
+
+Que:2)
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Product {
+private:
+    string productName;
+    double price;
+    double rating;
+
+public:
+    // Parameterized constructor
+    Product(string name, double p, double r) {
+        productName = name;
+        price = p;
+        rating = r;
+    }
+
+    void displayInfo() {
+        cout << "Product Name: " << productName << endl;
+        cout << "Price: Rs. " << price << endl;
+        cout << "Rating: " << rating << "/5" << endl;
+    }
+};
+
+int main() {
+    Product product("Wireless Headphones", 1499.99, 4.5);
+
+    product.displayInfo();
+
+    return 0;
+}
+----------------------------------------------------------
+
+Que:3)
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Movie {
+private:
+    string title;
+    string director;
+    int year;
+
+public:
+    // Parameterized constructor
+    Movie(string t, string d, int y) {
+        title = t;
+        director = d;
+        year = y;
+    }
+
+    // Copy constructor
+    Movie(const Movie &movie) {
+        title = movie.title;
+        director = movie.director;
+        year = movie.year;
+    }
+
+    void displayInfo() {
+        cout << "Title: " << title << endl;
+        cout << "Director: " << director << endl;
+        cout << "Year: " << year << endl;
+    }
+};
+
+int main() {
+
+    // Original object
+    Movie original("Inception", "Christopher Nolan", 2010);
+
+    // Copy of original object
+    Movie copied(original);
+
+    cout << "--- Original Movie ---" << endl;
+    original.displayInfo();
+
+    cout << "\n--- Copied Movie ---" << endl;
+    copied.displayInfo();
+
+    return 0;
+}
+------------------------------------------------------------
+
+Que:4)
+
+#include <iostream>
+using namespace std;
+
+class Ticket {
+public:
+    Ticket() {
+        cout << "Ticket booked successfully!" << endl;
+    }
+
+    // Destructor
+    ~Ticket() {
+        cout << "Saving your ticket..." << endl;
+    }
+};
+
+int main() {
+
+    Ticket *ticket = new Ticket();
+
+    cout << "Ticket is being used..." << endl;
+
+    // Delete object
+    delete ticket;
+
+    return 0;
+}
+------------------------------------------------------------
+
+Que:5)
+
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+class Playlist {
+private:
+    string name;
+
+public:
+    // Default constructor
+    Playlist() {
+        name = "My Favourites";
+        cout << "Welcome to your playlist!" << endl;
+    }
+
+    // Destructor
+    ~Playlist() {
+        ofstream file("autosave.txt");
+
+        if (file.is_open()) {
+            file << name;
+            file.close();
+
+            cout << "Playlist automatically saved!" << endl;
+        } else {
+            cout << "Unable to save playlist." << endl;
+        }
+    }
+
+    void display() {
+        cout << "Playlist Name: " << name << endl;
+    }
+};
+
+int main() {
+
+    Playlist playlist;
+
+    playlist.display();
+
+    return 0;
+}

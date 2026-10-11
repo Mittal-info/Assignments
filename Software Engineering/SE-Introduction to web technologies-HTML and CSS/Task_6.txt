@@ -1,0 +1,280 @@
+Que:1)
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Card</title>
+
+    <style>
+        .restaurant-card {
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid #e23744;
+            width: 300px;
+        }
+
+        .restaurant-name {
+            padding: 10px;
+            border-bottom: 1px solid gray;
+        }
+
+        .cuisine {
+            padding: 10px;
+            border-bottom: 1px solid gray;
+        }
+
+        .rating {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="restaurant-card">
+
+        <div class="restaurant-name">
+            <h2>Spice Garden</h2>
+        </div>
+
+        <div class="cuisine">
+            <p>North Indian, Chinese</p>
+        </div>
+
+        <div class="rating">
+            <p>⭐ 4.5 Rating</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
+-----------------------------------------------------
+
+Que:2)
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Tile</title>
+
+    <style>
+        .product {
+            width: 250px;
+            border: 1px solid #ccc;
+            padding: 15px;
+        }
+
+        .product img {
+            width: 200px;
+            display: block;
+        }
+
+        .product-name {
+            display: inline-block;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .price {
+            display: inline-block;
+            color: green;
+            font-size: 18px;
+        }
+
+        /* Price will be hidden when this class is added */
+        .hide-price {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="product">
+
+        <img src="laptop.jpg" alt="Laptop">
+
+        <h2 class="product-name">
+            HP Laptop
+        </h2>
+
+        <p class="price hide-price">
+            ₹45,999
+        </p>
+
+    </div>
+
+</body>
+</html>
+----------------------------------------------------
+
+Que:3)
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WhatsApp Notification</title>
+
+    <style>
+        .whatsapp-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+
+            background-color: #25D366;
+            color: white;
+
+            padding: 15px 20px;
+            margin: 10px;
+
+            border-radius: 25px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My Website</h1>
+
+    <p>
+        Scroll down to see that the WhatsApp notification
+        stays in the same place.
+    </p>
+
+    <div style="height: 1500px;">
+        More content...
+    </div>
+
+    <div class="whatsapp-badge">
+        💬 WhatsApp 1 New Message
+    </div>
+
+</body>
+</html>
+--------------------------------------------------
+
+Que:4)
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Posters</title>
+
+    <style>
+        .movie-grid {
+            display: flex;
+            gap: 20px;
+        }
+
+        .poster {
+            position: relative;
+            width: 200px;
+        }
+
+        .poster img {
+            width: 100%;
+            display: block;
+        }
+
+        .new-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+
+            background-color: red;
+            color: white;
+
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="movie-grid">
+
+        <div class="poster">
+            <img src="movie1.jpg" alt="New Movie">
+            <span class="new-badge">NEW</span>
+        </div>
+
+        <div class="poster">
+            <img src="movie2.jpg" alt="Movie 2">
+        </div>
+
+        <div class="poster">
+            <img src="movie3.jpg" alt="Movie 3">
+        </div>
+
+    </div>
+
+</body>
+</html>
+----------------------------------------------------
+
+Que:5)
+
+
+.restaurant {
+    margin: 20px;
+    padding: 20px;
+}
+
+.product {
+    margin: 20px;
+    padding: 20px;
+}
+
+.poster {
+    margin: 20px;
+    padding: 20px;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reusable CSS</title>
+
+    <style>
+        /* Reusable class keeps common spacing in one place,
+           making future changes easier and reducing repetition. */
+        .spacing {
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .restaurant {
+            border: 2px solid #e23744;
+        }
+
+        .product {
+            border: 2px solid #2874f0;
+        }
+
+        .poster {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="restaurant spacing">
+        Restaurant Card
+    </div>
+
+    <div class="product spacing">
+        Product Card
+    </div>
+
+    <div class="poster spacing">
+        Movie Poster
+    </div>
+
+</body>
+</html>

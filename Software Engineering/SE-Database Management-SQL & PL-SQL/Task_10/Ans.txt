@@ -1,0 +1,71 @@
+1. Create the playlists table
+Assuming a users table already exists with user_id as its primary key:
+
+CREATE TABLE playlists (
+    playlist_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    created_at DATETIME NOT NULL,
+    
+    CONSTRAINT fk_playlist_user
+        FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+2. Insert three sample records
+INSERT INTO playlists (user_id, name, created_at)
+VALUES
+    (101, 'Workout Mix', '2026-08-01 07:30:00'),
+    (102, 'Chill Vibes', '2026-08-05 20:15:00'),
+    (103, 'Top Hits',   '2026-08-10 18:45:00');
+
+You can verify the records with:
+
+SELECT *
+FROM playlists;
+
+3. Rename Chill Vibes to Evening Chill
+For example, for user_id = 102:
+
+UPDATE playlists
+SET name = 'Evening Chill'
+WHERE user_id = 102
+  AND name = 'Chill Vibes';
+
+The user_id condition ensures that only the intended user's playlist is changed.
+
+4. Delete the Workout Mix playlist
+For example, for user_id = 101:
+
+DELETE FROM playlists
+WHERE user_id = 101
+  AND name = 'Workout Mix';
+
+The combination of user_id and name makes the WHERE clause specific to the intended playlist.
+
+5. Stored procedure GetMonthlyPlaylistCount
+The procedure below accepts a user_id and month number, then returns the number of playlists created by that user during that month.
+
+DELIMITER //
+
+CREATE PROCEDURE GetMonthlyPlaylistCount(
+    IN p_user_id INT,
+    IN p_month INT
+)
+BEGIN
+    SELECT COUNT(*) AS total_playlists
+    FROM playlists
+    WHERE user_id = p_user_id
+      AND MONTH(created_at) = p_month;
+END //
+
+DELIMITER ;
+
+Example call
+To find the number of playlists created by user 101 in August (8):
+
+CALL GetMonthlyPlaylistCount(101, 8);
+
+The result will contain a column named total_playlists with the count for that user and month.
+
+
+

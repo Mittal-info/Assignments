@@ -1,0 +1,186 @@
+Que:1-2)
+#include <iostream>
+#include <string>
+using namespace std;
+
+const int MAX_TASKS = 5;
+
+string tasks[MAX_TASKS];
+int taskCount = 0;
+
+// Add a task
+void addTask(string task) {
+    if (taskCount < MAX_TASKS) {
+        tasks[taskCount] = task;
+        taskCount++;
+    } else {
+        cout << "Task list is full!" << endl;
+    }
+}
+
+// Mark task as DONE
+void markTaskDone(int index) {
+    if (index >= 0 && index < taskCount) {
+        tasks[index] += " - DONE";
+    } else {
+        cout << "Invalid task index!" << endl;
+    }
+}
+
+// Display all tasks
+void showTasks() {
+    cout << "\nTask List:" << endl;
+
+    for (int i = 0; i < taskCount; i++) {
+        cout << i + 1 << ". " << tasks[i] << endl;
+    }
+}
+
+int main() {
+    addTask("Complete assignment");
+    addTask("Study C++");
+    addTask("Read a book");
+    addTask("Go for a walk");
+    addTask("Practice coding");
+
+    cout << "Original List:";
+    showTasks();
+
+    // Mark second task as done
+    markTaskDone(1);
+
+    cout << "\nUpdated List:";
+    showTasks();
+
+    return 0;
+}
+
+-----------------------------------------------------
+Que:3)
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Task {
+private:
+    string title;
+    bool isDone;
+
+public:
+    // Constructor
+    Task(string taskTitle) {
+        title = taskTitle;
+        isDone = false;
+    }
+
+    // Mark task as done
+    void markDone() {
+        isDone = true;
+    }
+
+    // Display task
+    void display() {
+        cout << title;
+
+        if (isDone) {
+            cout << " - DONE";
+        } else {
+            cout << " - NOT DONE";
+        }
+
+        cout << endl;
+    }
+};
+--------------------------------------------------
+Que:4)
+
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+class Task {
+private:
+    string title;
+    bool isDone;
+
+public:
+    Task(string taskTitle) {
+        title = taskTitle;
+        isDone = false;
+    }
+
+    void markDone() {
+        isDone = true;
+    }
+
+    void display() {
+        cout << title;
+
+        if (isDone) {
+            cout << " - DONE";
+        } else {
+            cout << " - NOT DONE";
+        }
+
+        cout << endl;
+    }
+};
+
+class TaskList {
+private:
+    vector<Task> tasks;
+
+public:
+    // Add task
+    void addTask(string title) {
+        tasks.push_back(Task(title));
+    }
+
+    // Mark task as done
+    void markTaskDone(int index) {
+        if (index >= 0 && index < tasks.size()) {
+            tasks[index].markDone();
+        } else {
+            cout << "Invalid task index!" << endl;
+        }
+    }
+
+    // Display all tasks
+    void showTasks() {
+        for (int i = 0; i < tasks.size(); i++) {
+            cout << i + 1 << ". ";
+            tasks[i].display();
+        }
+    }
+};
+
+int main() {
+    TaskList taskList;
+
+    // Add 3 tasks
+    taskList.addTask("Complete assignment");
+    taskList.addTask("Study C++");
+    taskList.addTask("Go for a walk");
+
+    // Mark second task as done
+    taskList.markTaskDone(1);
+
+    // Display all tasks
+    cout << "Task List:" << endl;
+    taskList.showTasks();
+
+    return 0;
+}
+--------------------------------------------------
+Que:5)
+Data aur functions separate hain
+Global tasks[] array ko alag functions modify karte hain. Large program mein manage karna difficult ho sakta hai.
+
+Task ki information properly grouped nahi hai
+Title aur completion status ko separately manage karna padta hai. OOP mein Task class ke andar title aur isDone dono ek saath hain.
+
+Fixed-size array ki limitation hai
+Procedural version mein sirf 5 tasks allowed hain. OOP version mein vector<Task> use karke easily multiple tasks store kar sakte hain.
+

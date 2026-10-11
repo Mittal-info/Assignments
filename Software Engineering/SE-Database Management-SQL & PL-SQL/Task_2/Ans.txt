@@ -1,0 +1,40 @@
+Que:1)
+
+mysql> create table resturant
+    -> (id int primary key auto_increment,
+    -> name varchar(20),
+    -> location varchar(20),
+    -> raating decimal(2,1));
+Query OK, 0 rows affected (0.16 sec)
+---------------------------------------------------------------
+Que:2)
+
+mysql> alter table  resturant add average_cost int;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+--------------------------------------------------------------
+Que:3)
+
+mysql> drop table resturant;
+Query OK, 0 rows affected (0.05 sec)
+--------------------------------------------------------------
+Que:4)
+
+mysql> create table playlist
+    -> (playlist_id int primary key auto_increment,
+    -> title varchar(20),
+    ->  created_by varchar(20),
+    ->  created_at date);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc playlist;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| playlist_id | int         | NO   | PRI | NULL    | auto_increment |
+| title       | varchar(20) | YES  |     | NULL    |                |
+| created_by  | varchar(20) | YES  |     | NULL    |                |
+| created_at  | date        | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.05 sec)
+

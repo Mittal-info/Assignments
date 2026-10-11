@@ -1,0 +1,69 @@
+Que:1)
+mysql> create table Playlist
+    -> (
+    ->  id int primary key auto_increment,
+    ->  song_name varchar(20),
+    ->  artist varchar(20),
+    -> genre varchar(30),
+    -> play_count int);
+Query OK, 0 rows affected (0.04 sec)
+============================================================
+mysql> INSERT INTO Playlist (song_name, artist, genre, play_count)
+    -> VALUES
+    -> ('Kesariya', 'Arijit Singh', 'Bollywood', 5000),
+    -> ('Shape of You', 'Ed Sheeran', 'Pop', 8000),
+    -> ('Believer', 'Imagine Dragons', 'Rock', 6500),
+    -> ('Perfect', 'Ed Sheeran', 'Pop', 7000),
+    -> ('Tum Hi Ho', 'Arijit Singh', 'Bollywood', 9000);
+Query OK, 5 rows affected (0.02 sec)
+----------------------------------------------------------
+Que:2)
+mysql> select * from Playlist
+    -> where genre ="Pop" and play_count>100
+    -> order by play_count desc;
++----+--------------+------------+-------+------------+
+| id | song_name    | artist     | genre | play_count |
++----+--------------+------------+-------+------------+
+|  2 | Shape of You | Ed Sheeran | Pop   |       8000 |
+|  4 | Perfect      | Ed Sheeran | Pop   |       7000 |
++----+--------------+------------+-------+------------+
+2 rows in set (0.00 sec)
+-----------------------------------------------------------
+Que:3)
+mysql> select genre,count(genre) as Genre
+    -> from Playlist
+    -> group by genre;
++-----------+-------+
+| genre     | Genre |
++-----------+-------+
+| Bollywood |     2 |
+| Pop       |     2 |
+| Rock      |     1 |
++-----------+-------+
+3 rows in set, 1 warning (0.01 sec)
+------------------------------------------------------------
+Que:4)
+mysql> select genre,sum(play_count)  as total_plays
+    -> from Playlist
+    -> group by genre;
++-----------+-------------+
+| genre     | total_plays |
++-----------+-------------+
+| Bollywood |       14000 |
+| Pop       |       15000 |
+| Rock      |        6500 |
++-----------+-------------+
+3 rows in set (0.00 sec)
+-----------------------------------------------------------
+Que:5)
+
+mysql> select song_name,artist as singer from Playlist;
++--------------+-----------------+
+| song_name    | singer          |
++--------------+-----------------+
+| Kesariya     | Arijit Singh    |
+| Shape of You | Ed Sheeran      |
+| Believer     | Imagine Dragons |
+| Perfect      | Ed Sheeran      |
+| Tum Hi Ho    | Arijit Singh    |
++--------------+-----------------+

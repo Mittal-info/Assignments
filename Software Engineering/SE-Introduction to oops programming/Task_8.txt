@@ -1,0 +1,284 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+using namespace std;
+
+const string FILE_NAME = "content_list.txt";
+
+// 1. Content Class
+class Content {
+public:
+    string title;
+    string platform;
+    int views;
+    string status;
+
+    // Constructor
+    Content(string t, string p, int v, string s) {
+        title = t;
+        platform = p;
+        views = v;
+        status = s;
+    }
+
+    // Display all details
+    void display() {
+        cout << "Title: " << title << endl;
+        cout << "Platform: " << platform << endl;
+        cout << "Views: " << views << endl;
+        cout << "Status: " << status << endl;
+    }
+};
+
+
+// Save one content item to file
+void saveContent(Content content) {
+    ofstream file(FILE_NAME, ios::app);
+
+    file << content.title << "|"
+         << content.platform << "|"
+         << content.views << "|"
+         << content.status << endl;
+
+    file.close();
+}
+
+
+// Read all content items from file
+vector<Content> readContents() {
+    vector<Content> contents;
+
+    ifstream file(FILE_NAME);
+
+    string title;
+    string platform;
+    string viewsString;
+    string status;
+
+    while (getline(file, title, '|')) {
+        getline(file, platform, '|');
+        getline(file, viewsString, '|');
+        getline(file, status);
+
+        int views = stoi(viewsString);
+
+        contents.push_back(
+            Content(title, platform, views, status)
+        );
+    }
+
+    file.close();
+
+    return contents;
+}
+
+
+// 3. Display content in numbered list
+void displayList() {
+    vector<Content> contents = readContents();
+
+    if (contents.empty()) {
+        cout << "\nNo content found." << endl;
+        return;
+    }
+
+    cout << "\n===== Content List =====" << endl;
+
+    for (int i = 0; i < contents.size(); i++) {
+        cout << i + 1 << ". "
+             << contents[i].title
+             << " - "
+             << contents[i].platform
+             << endl;
+    }
+}
+
+
+// Rewrite the entire file
+void rewriteFile(vector<Content> contents) {
+    ofstream file(FILE_NAME);
+
+    for (Content content : contents) {
+        file << content.title << "|"
+             << content.platform << "|"
+             << content.views << "|"
+             << content.status << endl;
+    }
+
+    file.close();
+}
+
+
+// 4. Update content status
+void updateStatus() {
+    vector<Content> contents = readContents();
+
+    if (contents.empty()) {
+        cout << "\nNo content available to update." << endl;
+        return;
+    }
+
+    displayList();
+
+    int number;
+    cout << "\nEnter content number to update: ";
+    cin >> number;
+    cin.ignore();
+
+    if (number < 1 || number > contents.size()) {
+        cout << "Invalid content number!" << endl;
+        return;
+    }
+
+    string newStatus;
+
+    cout << "Enter new status: ";
+    getline(cin, newStatus);
+
+    contents[number - 1].status = newStatus;
+
+    rewriteFile(contents);
+
+    cout << "Status updated successfully!" << endl;
+}
+
+
+// 5. Delete content
+void deleteContent() {
+    vector<Content> contents = readContents();
+
+    if (contents.empty()) {
+        cout << "\nNo content available to delete." << endl;
+        return;
+    }
+
+    displayList();
+
+    int number;
+    cout << "\nEnter content number to delete: ";
+    cin >> number;
+    cin.ignore();
+
+    if (number < 1 || number > contents.size()) {
+        cout << "Invalid content number!" << endl;
+        return;
+    }
+
+    // Delete selected item
+    contents.erase(contents.begin() + (number - 1));
+
+    // Rewrite file
+    rewriteFile(contents);
+
+    cout << "Content deleted successfully!" << endl;
+
+    // Display updated list
+    cout << "\nUpdated Content List:" << endl;
+    displayList();
+}
+
+
+// Main Menu
+int main() {
+
+    int choice;
+
+    do {
+        cout << "\n========== CONTENT MANAGER ==========" << endl;
+        cout << "1. Add Content" << endl;
+        cout << "2. Display Content List" << endl;
+        cout << "3. Update Content Status" << endl;
+        cout << "4. Delete Content" << endl;
+        cout << "5. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+        cin.ignore();
+
+        switch (choice) {
+
+            case 1: {
+                string title;
+                string platform;
+                int views;
+                string status;
+
+                cout << "\nEnter content title: ";
+                getline(cin, title);
+
+                cout << "Enter platform: ";
+                getline(cin, platform);
+
+                cout << "Enter views: ";
+                cin >> views;
+                cin.ignore();
+
+                cout << "Enter status: ";
+                getline(cin, status);
+
+                Content content(
+                    title,
+                    platform,
+                    views,
+                    status
+                );
+
+                // Display the newly created object
+                cout << "\nContent Details:" << endl;
+                content.display();
+
+                // Append to file
+                saveContent(content);
+
+                cout << "\nContent saved successfully!" << endl;
+
+                break;
+            }
+
+            case 2:
+                displayList();
+                break;
+
+            case 3:
+                updateStatus();
+                break;
+
+            case 4:
+                deleteContent();
+                break;
+
+            case 5:
+                cout << "Exiting program..." << endl;
+                break;
+
+            default:
+                cout << "Invalid choice!" << endl;
+        }
+
+    } while (choice != 5);
+
+    return 0;
+}
+==============================================================
+Output::
+
+========== CONTENT MANAGER ==========
+1. Add Content
+2. Display Content List
+3. Update Content Status
+4. Delete Content
+5. Exit
+Enter your choice: 1
+
+Enter content title: C++ Tutorial
+Enter platform: YouTube
+Enter views: 5000
+Enter status: Planned
+
+Content Details:
+Title: C++ Tutorial
+Platform: YouTube
+Views: 5000
+Status: Planned
+
+Content saved successfully!

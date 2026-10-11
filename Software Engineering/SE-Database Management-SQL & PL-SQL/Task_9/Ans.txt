@@ -1,0 +1,217 @@
+Que:1)
+
+ Insert an order, COMMIT, and verify persistence
+-- Insert a new order
+INSERT INTO Orders (OrderID, UserID, OrderDate, TotalAmount)
+VALUES (101, 1, SYSDATE, 750);
+
+-- Save the transaction permanently
+COMMIT;
+
+-- Verify the order
+SELECT *
+FROM Orders
+WHERE OrderID = 101;
+
+To verify persistence after reconnecting:
+
+-- Disconnect and reconnect to the database.
+
+SELECT *
+FROM Orders
+WHERE OrderID = 101;
+
+Because COMMIT was executed, the order remains after reconnecting.
+
+-------------------------------------------------------------
+Que:2)
+
+ Zomato-style order using ROLLBACK
+-- Add two food items
+INSERT INTO OrderItems (OrderItemID, OrderID, ProductID, Quantity)
+VALUES (201, 101, 10, 2);
+
+INSERT INTO OrderItems (OrderItemID, OrderID, ProductID, Quantity)
+VALUES (202, 101, 20, 1);
+
+-- Check the inserted items before rollback
+SELECT *
+FROM OrderItems
+WHERE OrderItemID IN (201, 202);
+
+-- Undo both insertions
+ROLLBACK;
+
+-- Verify that the items no longer exist
+SELECT *
+FROM OrderItems
+WHERE OrderItemID IN (201, 202);
+
+The final SELECT should return no rows,
+ assuming those IDs did not already exist.
+---------------------------------------------------------------
+Que:3)
+
+Flipkart-style cart using SAVEPOINT
+-- Add the first product
+INSERT INTO Cart (CartItemID, UserID, ProductID, Quantity)
+VALUES (301, 1, 501, 1);
+
+-- Mark this point
+SAVEPOINT product_added;
+
+-- Add the second product
+INSERT INTO Cart (CartItemID, UserID, ProductID, Quantity)
+VALUES (302, 1, 502, 2);
+
+-- Undo only the second product
+ROLLBACK TO SAVEPOINT product_added;
+
+-- Display the final cart
+SELECT *
+FROM Cart
+WHERE UserID = 1;
+---------------------------------------------------------------
+Que:4)
+
+ Wallet trigger to deduct purchase amount
+Assume the Wallet table contains:
+
+USER_ID
+BALANCE
+
+and a WalletTransactions table contains:
+
+TRANSACTION_ID
+USER_ID
+AMOUNT
+
+The trigger can automatically deduct the transaction amount:
+
+CREATE OR REPLACE TRIGGER trg_deduct_wallet
+AFTER INSERT ON WalletTransactions
+FOR EACH ROW
+BEGIN
+    UPDATE Wallet
+    SET Balance = Balance - :NEW.Amount
+    WHERE User_ID = :NEW.User_ID;
+END;
+/
+
+Test the trigger
+-- Check current balance
+SELECT *
+FROM Wallet
+WHERE User_ID = 1;
+
+-- Make a purchase of 250
+INSERT INTO WalletTransactions
+    (Transaction_ID, User_ID, Amount)
+VALUES
+    (1001, 1, 250);
+
+-- Check updated balance
+SELECT *
+FROM Wallet
+WHERE User_ID = 1;
+
+COMMIT;
+
+If the user's balance was 1000, it should become 750.
+---------------------------------------------------------------
+Que:5)
+
+Buggy trigger, test case, and corrected trigger
+Buggy trigger scenario
+Suppose the business rule is:
+
+An expense of ₹200 should reduce the wallet balance by ₹200.
+
+A developer accidentally writes:
+
+CREATE OR REPLACE TRIGGER trg_deduct_wallet_buggy
+AFTER INSERT ON WalletTransactions
+FOR EACH ROW
+BEGIN
+    UPDATE Wallet
+    SET Balance = Balance + :NEW.Amount
+    WHERE User_ID = :NEW.User_ID;
+END;
+/
+
+Test case exposing the bug
+Start with a wallet balance of ₹1000:
+
+UPDATE Wallet
+SET Balance = 1000
+WHERE User_ID = 1;
+
+COMMIT;
+
+-- Insert an expense of ₹200
+INSERT INTO WalletTransactions
+    (Transaction_ID, User_ID, Amount)
+VALUES
+    (2001, 1, 200);
+
+-- Check the balance
+SELECT Balance
+FROM Wallet
+WHERE User_ID = 1;
+
+Problem
+The expected balance is:
+
+1000 - 200 = 800
+
+But the buggy trigger performs:
+
+1000 + 200 = 1200
+
+So the balance incorrectly increases to ₹1200.
+
+Corrected trigger
+The error is the + operator. An expense should be deducted, so the trigger must use -.
+
+CREATE OR REPLACE TRIGGER trg_deduct_wallet
+AFTER INSERT ON WalletTransactions
+FOR EACH ROW
+BEGIN
+    UPDATE Wallet
+    SET Balance = Balance - :NEW.Amount
+    WHERE User_ID = :NEW.User_ID;
+END;
+/
+
+Retest
+-- Reset balance for testing
+UPDATE Wallet
+SET Balance = 1000
+WHERE User_ID = 1;
+
+COMMIT;
+
+-- Insert expense
+INSERT INTO WalletTransactions
+    (Transaction_ID, User_ID, Amount)
+VALUES
+    (2002, 1, 200);
+
+-- Verify
+SELECT Balance
+FROM Wallet
+WHERE User_ID = 1;
+
+Expected result:
+
+BALANCE
+-------
+800
+
+Explanation: The original trigger used Balance + :NEW.Amount, which treated an expense as money being added. The corrected trigger uses Balance - :NEW.Amount, so every new expense transaction correctly decreases the user's wallet balance.
+
+
+
+
+
+

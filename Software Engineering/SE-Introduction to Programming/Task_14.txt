@@ -1,0 +1,61 @@
+Que:1)
+
+let items = ["Burger", "Pizza", "Fries"];
+let prices = [120, 250, 90];
+
+let total = 0;
+
+for (let i = 0; i < items.length; i++) {
+    total += prices[i];
+}
+
+console.log("Total price is: " + total);
+--------------------------------------------------
+Que:2)
+
+function isEven(num) {
+    // Check whether the number is divisible by 2
+    if (num % 2 == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+-----------------------------------------------------
+
+Que:3)
+
+function formatFollowersCount(count) {
+    // Numbers below 1000 are returned as they are
+    if (count < 1000) {
+        return count.toString();
+    }
+
+    // Convert thousands into K
+    if (count < 1000000) {
+        return (count / 1000).toFixed(1) + "K";
+    }
+
+    // Convert millions into M
+    return (count / 1000000).toFixed(1) + "M";
+}
+
+console.log(formatFollowersCount(500));       // 500
+console.log(formatFollowersCount(1500));      // 1.5K
+console.log(formatFollowersCount(1200000));   // 1.2M
+
+//output
+
+500
+1.5K
+1.2M
+-------------------------------------------------
+Que:4)
+
+for (let i = 1; i <= 10; i++) {
+
+    // If remainder is 0, the number is even
+    if (i % 2 === 0) {
+        console.log(i);
+    }
+}

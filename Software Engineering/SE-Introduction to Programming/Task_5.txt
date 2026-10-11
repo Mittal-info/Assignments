@@ -1,0 +1,122 @@
+Que:1)
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char team[50];
+
+    printf("Enter your favorite IPL team: ");
+    scanf("%s", team);
+
+    if (strcmp(team, "Mumbai") == 0)
+        printf("Go Mumbai Indians!");
+    else if (strcmp(team, "Chennai") == 0)
+        printf("Chennai Super Kings for the win!");
+    else if (strcmp(team, "Bangalore") == 0)
+        printf("Come on RCB! Ee Sala Cup Namde!");
+    else if (strcmp(team, "Kolkata") == 0)
+        printf("Korbo Lorbo Jeetbo!");
+    else if (strcmp(team, "Hyderabad") == 0)
+        printf("Go Sunrisers Hyderabad!");
+    else if (strcmp(team, "Rajasthan") == 0)
+        printf("Halla Bol Rajasthan Royals!");
+    else if (strcmp(team, "Punjab") == 0)
+        printf("Bring it home, Punjab Kings!");
+    else if (strcmp(team, "Delhi") == 0)
+        printf("Come on Delhi Capitals!");
+    else if (strcmp(team, "Lucknow") == 0)
+        printf("Go Lucknow Super Giants!");
+    else if (strcmp(team, "Gujarat") == 0)
+        printf("Titans, let's win!");
+    else
+        printf("Team not found!");
+
+    return 0;
+}
+-------------------------------------------------------
+Que:2)
+
+#include <stdio.h>
+
+int main() {
+    char meal[20];
+
+    printf("Enter meal time: ");
+    scanf("%s", meal);
+
+    switch (meal[0]) {
+        case 'b':
+            printf("Suggested dish: Masala Dosa");
+            break;
+
+        case 'l':
+            printf("Suggested dish: Biryani");
+            break;
+
+        case 'd':
+            printf("Suggested dish: Paneer Butter Masala");
+            break;
+
+        case 's':
+            printf("Suggested dish: Samosa");
+            break;
+
+        default:
+            printf("Try some fruits!");
+    }
+
+    return 0;
+}
+-------------------------------------------------------
+
+Que:3)
+
+#include <stdio.h>
+
+int main() {
+    float amount, discount, finalAmount;
+
+    printf("Enter cart amount: ");
+    scanf("%f", &amount);
+
+    if (amount > 2000) {
+        discount = amount * 20 / 100;
+        finalAmount = amount - discount;
+    } 
+    else {
+        if (amount > 1000) {
+            discount = amount * 10 / 100;
+            finalAmount = amount - discount;
+        } 
+        else {
+            finalAmount = amount;
+        }
+    }
+
+    printf("Final amount to pay: %.2f", finalAmount);
+
+    return 0;
+}
+---------------------------------------------------------
+Que:4)
+
+#include <stdio.h>
+
+int main() {
+    int age;
+
+    printf("Enter your age: ");
+    scanf("%d", &age);
+
+    if (age >= 18)
+        printf("Eligible for Driving License\n");
+
+    if (age >= 21)
+        printf("Eligible for Credit Card\n");
+
+    if (age >= 25)
+        printf("Eligible for Car Rental\n");
+
+    return 0;
+}

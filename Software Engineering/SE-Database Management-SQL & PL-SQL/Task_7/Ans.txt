@@ -1,0 +1,108 @@
+Que::1)
+
+mysql> CREATE TABLE Restaurants(
+    ->
+    ->     id INT PRIMARY KEY,
+    ->
+    ->     name VARCHAR(100) NOT NULL,
+    ->
+    ->     location VARCHAR(100) NOT NULL,
+    ->
+    ->     cuisine VARCHAR(100)
+    ->
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc  Restaurants;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| id       | int          | NO   | PRI | NULL    |       |
+| name     | varchar(100) | NO   |     | NULL    |       |
+| location | varchar(100) | NO   |     | NULL    |       |
+| cuisine  | varchar(100) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+-------------------------------------------------------------
+
+Que::2)
+
+mysql> CREATE TABLE FoodOrder (
+    ->     order_id INT PRIMARY KEY,
+    ->     restaurant_id INT,
+    ->     user_id INT,
+    ->     order_total DECIMAL(10,2),
+    ->     FOREIGN KEY (restaurant_id) REFERENCES Restaurant(id)
+    -> );
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> desc FoodOrder;
++---------------+---------------+------+-----+---------+-------+
+| Field         | Type          | Null | Key | Default | Extra |
++---------------+---------------+------+-----+---------+-------+
+| order_id      | int           | NO   | PRI | NULL    |       |
+| restaurant_id | int           | YES  | MUL | NULL    |       |
+| user_id       | int           | YES  |     | NULL    |       |
+| order_total   | decimal(10,2) | YES  |     | NULL    |       |
++---------------+---------------+------+-----+---------+-------+
+--------------------------------------------------------------
+Que:3)
+
+mysql> CREATE TABLE SpotifyUser (
+    ->     user_id INT PRIMARY KEY,
+    ->     username VARCHAR(100) UNIQUE,
+    ->     email VARCHAR(100) NOT NULL,
+    ->     subscription_type VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO SpotifyUser
+    -> (user_id, username, email, subscription_type)
+    -> VALUES
+    -> (1, 'rahul123', 'rahul@gmail.com', 'Premium'),
+    -> (2, 'priya_music', 'priya@gmail.com', 'Free'),
+    -> (3, 'aarav07', 'aarav@gmail.com', 'Premium'),
+    -> (4, 'neha_singh', 'neha@gmail.com', 'Premium'),
+    -> (5, 'rohan_music', 'rohan@gmail.com', 'Free'),
+    -> (6, 'simran22', 'simran@gmail.com', 'Premium');
+Query OK, 6 rows affected (0.03 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM SpotifyUser;
++---------+-------------+------------------+-------------------+
+| user_id | username    | email            | subscription_type |
++---------+-------------+------------------+-------------------+
+|       1 | rahul123    | rahul@gmail.com  | Premium           |
+|       2 | priya_music | priya@gmail.com  | Free              |
+|       3 | aarav07     | aarav@gmail.com  | Premium           |
+|       4 | neha_singh  | neha@gmail.com   | Premium           |
+|       5 | rohan_music | rohan@gmail.com  | Free              |
+|       6 | simran22    | simran@gmail.com | Premium           |
++---------+-------------+------------------+-------------------+
+--------------------------------------------------------------
+Que:4)
+
+mysql> CREATE VIEW TopSpendersView AS
+    -> SELECT SpotifyUser.username, FoodOrder.order_total
+    -> FROM FoodOrder
+    -> INNER JOIN SpotifyUser
+    -> ON FoodOrder.user_id = SpotifyUser.user_id
+    -> WHERE FoodOrder.order_total > 1000;
+
+    mysql>  SELECT * FROM TopSpendersView;
++----------+-------------+
+| username | order_total |
++----------+-------------+
+| rahul123 |     1500.00 |
++----------+-------------+
+---------------------------------------------------------
+Que::5)
+
+mysql> SELECT username, order_total
+    -> FROM TopSpendersView
+    -> WHERE order_total > 2000
+    -> ORDER BY order_total DESC;
++----------+-------------+
+| username | order_total |
++----------+-------------+
+| rahul123 |     3000.00 |
++----------+-------------+
