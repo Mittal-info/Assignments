@@ -1,0 +1,9 @@
+
+Mittal, Satellite Road, Ahmedabad, 380015
+Rahul, CG Road, Ahmedabad, 380015, 9000012345
+Priya, Vastrapur, Ahmedabad, 380001
+Amit, Maninagar, Ahmedabad, 380002, 8000012345
+Neha, Navrangpura, Ahmedabad, 380003
+Karan, Bopal, Ahmedabad, 380004, 7000012345
+Riya, Thaltej, Ahmedabad, 380001
+Jay, Paldi, Ahmedabad, 380002
