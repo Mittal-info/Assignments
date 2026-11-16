@@ -1,0 +1,7 @@
+
+Kiran Patel,250000,10.5,36
+Meera Shah,500000,9.5,60
+Amit Kumar,150000,0,24
+Neha Patel,300000,8.5,sixty
+Rahul Desai,200000,11,36
+Priya Mehta,100000,7.5

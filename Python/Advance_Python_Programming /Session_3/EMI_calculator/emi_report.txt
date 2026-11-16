@@ -1,0 +1,1 @@
+report = open("emi_report.txt", "w")
